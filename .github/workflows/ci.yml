@@ -1,0 +1,43 @@
+# .github/workflows/ci.yml
+name: Pipeline de CI - Olá Mundo DevOps
+# Define quando o pipeline deve rodar
+on:
+  push: # Rodar em todo push
+    branches: ["main"] # Apenas na branch main
+  pull_request: # Rodar em todo pull request
+    branches: ["main"] # Que tenha como alvo a branch main
+# Define os "trabalhos" (jobs) que o pipeline executará
+jobs:
+  # O nome do nosso job é "test-and-build"
+  test-and-build:
+    # A máquina virtual que o job usará
+    runs-on: ubuntu-latest
+    # Os passos (steps) que o job executará em sequência
+    steps:
+      # 1. Baixa o código do repositório para a máquina virtual
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+      # 2. Configura o ambiente Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22" # Usamos a mesma versão do Dockerfile
+          cache: "npm" # Habilita o cache do npm para builds mais rápidos
+      # 3. Instala todas as dependências (incluindo devDependencies)
+      - name: Instalar Dependências
+        run: npm install
+      # 4. Executa os testes
+      - name: Rodar Testes
+        run: npm test
+      # 5. Configura o Docker Buildx (necessário para build)
+      - name: Configurar Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      # 6. Constrói (build) a imagem Docker
+      # Não vamos fazer "push" para um registro por enquanto, apenas construir.
+      - name: Build da Imagem Docker
+        uses: docker/build-push-action@v5
+        with:
+          context: . # O contexto é o diretório atual
+          file: ./Dockerfile # O caminho para o Dockerfile
+          push: false # "false" significa apenas construir, não enviar
+          tags: ola-devops:latest # Um nome para a imagem
