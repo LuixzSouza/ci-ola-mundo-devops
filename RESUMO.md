@@ -46,15 +46,19 @@ numa máquina virtual `ubuntu-latest`:
 | `docker run -p 3000:3000 -d ola-devops` | Container no ar, respondendo "Olá Mundo DevOps!" na porta 3000 |
 | `git init` + commit | Commit inicial criado na branch `main` |
 
-## Falta fazer (só isso!)
+## Repositório e execução do pipeline
 
-Criar o repositório no GitHub e enviar o código - aí o pipeline roda sozinho
-e aparece o ✅ verde na aba **Actions**:
+**Repositório:** https://github.com/LuixzSouza/ci-ola-mundo-devops
+**Execução do CI:** https://github.com/LuixzSouza/ci-ola-mundo-devops/actions
 
-```bash
-git remote add origin <URL_DO_SEU_REPOSITORIO.git>
-git push -u origin main
-```
+Após o `git push`, o GitHub Actions detectou o arquivo `ci.yml` e disparou o
+pipeline automaticamente:
+
+- Run: **Pipeline de CI - Olá Mundo DevOps #1**
+- Job: `test-and-build`
+- Resultado: ✅ **Success** em 33 segundos
+- Todos os passos passaram: Checkout → Node.js → Instalar Dependências →
+  Rodar Testes → Docker Buildx → Build da Imagem Docker
 
 ---
 
