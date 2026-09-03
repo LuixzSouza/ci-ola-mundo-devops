@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("./app"); // Importamos nosso app
+const app = require("./app"); 
 
 describe("API Olá Mundo", () => {
   it('Deve retornar "Olá Mundo DevOps!" na rota /', async () => {

@@ -2,7 +2,7 @@
 
 **Disciplina:** DevOps - UNIVAS / Pouso Alegre-MG
 **Professor:** Raffael Carvalho
-**Aluno:** Luiz Antônio de Souza
+**Aluno:** Luiz Antônio de Souza, Renan Carlos, Itallo
 
 ---
 
